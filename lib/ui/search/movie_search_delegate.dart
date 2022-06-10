@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:moviezflutter/ui/components/grid/movies_grid_view.dart';
 import 'package:moviezflutter/ui/components/loading_widget.dart';
+import 'package:moviezflutter/ui/home/saved/saved_page_controller.dart';
 import 'package:moviezflutter/ui/search/search_controller.dart';
 
 class MovieSearchDelegate extends SearchDelegate {
@@ -51,8 +52,15 @@ class MovieSearchDelegate extends SearchDelegate {
       child: Obx(() {
         final movies = controller.movies.value;
 
+        final savedMovies = (SavedPageController.it.movies.value.data ?? [])
+            .map((e) => e.movieId)
+            .toList();
+
         if (movies.data != null) {
-          return MoviesGridView(moviesList: movies.data!);
+          return MoviesGridView(
+              moviesList: movies.data!.movies
+                ..removeWhere(
+                    (element) => savedMovies.contains(element.movieId)));
         }
 
         if (movies.errorMessage != null && movies.errorMessage!.isNotEmpty) {

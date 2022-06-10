@@ -35,17 +35,20 @@ class AppBindings extends Bindings {
     Get.lazyPut<MoviesRepo>(() => MoviesRepoImpl(Get.find(), Get.find()));
 
     //use cases
-    Get.lazyPut(() => GetMoviesUseCase(Get.find()));
-    Get.lazyPut(() => GetTrendingMoviesUseCase(Get.find()));
-    Get.lazyPut(() => SearchMoviesUseCase(Get.find()));
-    Get.lazyPut(() => GetMovieDetailsUseCase(Get.find()));
-    Get.lazyPut(() => GetSavedMoviesUseCase(Get.find()));
-    Get.lazyPut(() => BookmarkMovieUseCase(Get.find()));
-    Get.lazyPut(() => DeletedSavedMovieUseCase(Get.find()));
+    Get.lazyPut(() => GetSavedMoviesUseCase(Get.find()), fenix: true);
+    Get.lazyPut(() => GetMoviesUseCase(Get.find()), fenix: true);
+    Get.lazyPut(() => GetTrendingMoviesUseCase(Get.find()), fenix: true);
+    Get.lazyPut(() => SearchMoviesUseCase(Get.find()), fenix: true);
+    Get.lazyPut(() => GetMovieDetailsUseCase(Get.find()), fenix: true);
+    Get.lazyPut(() => BookmarkMovieUseCase(Get.find()), fenix: true);
+    Get.lazyPut(() => DeletedSavedMovieUseCase(Get.find()), fenix: true);
 
     //controller
-    Get.put(DiscoverPageController(getMoviesUseCase: Get.find()));
     Get.put(SavedPageController(getSavedMoviesUseCase: Get.find()));
+    Get.put(HomeScreenController(
+        connectivityManager: Get.find(), networkManager: Get.find()));
+
+    Get.put(DiscoverPageController(getMoviesUseCase: Get.find()));
 
     Get.put(MovieDetailsController(
         getMovieDetailsUseCase: Get.find(),
@@ -56,10 +59,5 @@ class AppBindings extends Bindings {
         fenix: true);
 
     Get.put(HomePageController(getTrendingMoviesUseCase: Get.find()));
-
-    Get.put(HomeScreenController(
-        connectivityManager: Get.find(), networkManager: Get.find()));
-
-    await Future.delayed(Duration.zero);
   }
 }

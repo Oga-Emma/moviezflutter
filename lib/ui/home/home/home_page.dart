@@ -99,7 +99,7 @@ class HomePage extends StatelessWidget {
                 final movies = homeController.movies.value;
 
                 if (movies.data != null) {
-                  return MoviesGridView(moviesList: movies.data!);
+                  return MoviesGridView(moviesList: movies.data!.movies);
                 }
 
                 if (movies.errorMessage != null &&
@@ -114,7 +114,8 @@ class HomePage extends StatelessWidget {
         ));
   }
 
-  SavedPageController get savedPageMovieController => Get.find();
+  SavedPageController get savedPageMovieController => SavedPageController.it;
+
   Widget savedMoviesArea() {
     return SizedBox(
       child: Obx(() {

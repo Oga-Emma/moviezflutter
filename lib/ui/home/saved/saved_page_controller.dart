@@ -9,7 +9,9 @@ class SavedPageController extends GetxController {
 
   @override
   void onReady() {
-    getMovies();
+    Future.delayed(Duration(seconds: 1), () {
+      getMovies();
+    });
     super.onReady();
   }
 
@@ -27,10 +29,5 @@ class SavedPageController extends GetxController {
       .where((element) => element.title.toLowerCase().contains(filter.value))
       .toList();
 
-  static SavedPageController get it {
-    if (Get.isRegistered<SavedPageController>()) {
-      return Get.find();
-    }
-    return Get.put(SavedPageController(getSavedMoviesUseCase: Get.find()));
-  }
+  static SavedPageController get it => Get.find();
 }
