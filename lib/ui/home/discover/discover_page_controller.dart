@@ -22,4 +22,11 @@ class DiscoverPageController extends GetxController {
     movies.value = Resource<MoviesList>.loading();
     movies.value = await getMoviesUseCase(1);
   }
+
+  static DiscoverPageController get it {
+    if (Get.isRegistered<DiscoverPageController>()) {
+      return Get.find();
+    }
+    return Get.put(DiscoverPageController(getMoviesUseCase: Get.find()));
+  }
 }

@@ -11,7 +11,7 @@ import 'package:moviezflutter/ui/home/saved/saved_page_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key}) : super(key: key);
-  HomeScreenController get controller => Get.find();
+  HomeScreenController get controller => HomeScreenController.it;
 
   @override
   Widget build(BuildContext context) {

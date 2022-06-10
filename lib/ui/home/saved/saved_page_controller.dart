@@ -26,4 +26,11 @@ class SavedPageController extends GetxController {
   List<Movie> get movieList => (movies.value.data ?? [])
       .where((element) => element.title.toLowerCase().contains(filter.value))
       .toList();
+
+  static SavedPageController get it {
+    if (Get.isRegistered<SavedPageController>()) {
+      return Get.find();
+    }
+    return Get.put(SavedPageController(getSavedMoviesUseCase: Get.find()));
+  }
 }

@@ -59,5 +59,7 @@ class AppBindings extends Bindings {
 
     Get.put(HomeScreenController(
         connectivityManager: Get.find(), networkManager: Get.find()));
+
+    await Future.delayed(Duration.zero);
   }
 }

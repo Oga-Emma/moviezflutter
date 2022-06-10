@@ -5,6 +5,14 @@ import 'package:get/get.dart';
 import 'package:moviezflutter/core/config/network_manager.dart';
 
 class HomeScreenController extends GetxController {
+  static HomeScreenController get it {
+    if (Get.isRegistered<HomeScreenController>()) {
+      return Get.find();
+    }
+    return Get.put(HomeScreenController(
+        connectivityManager: Get.find(), networkManager: Get.find()));
+  }
+
   HomeScreenController(
       {required this.connectivityManager, required this.networkManager});
   final Connectivity connectivityManager;

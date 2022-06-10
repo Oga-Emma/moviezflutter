@@ -34,4 +34,11 @@ class HomePageController extends GetxController {
     movies.value = Resource<MoviesList>.loading();
     movies.value = await getTrendingMoviesUseCase(1, type);
   }
+
+  static HomePageController get it {
+    if (Get.isRegistered<HomePageController>()) {
+      return Get.find();
+    }
+    return Get.put(HomePageController(getTrendingMoviesUseCase: Get.find()));
+  }
 }
