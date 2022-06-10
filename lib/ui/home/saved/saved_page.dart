@@ -13,7 +13,7 @@ class SavedPage extends StatefulWidget {
 }
 
 class _SavedPageState extends State<SavedPage> {
-  SavedPageController get controller => Get.find();
+  SavedPageController get controller => SavedPageController.it;
 
   @override
   void initState() {

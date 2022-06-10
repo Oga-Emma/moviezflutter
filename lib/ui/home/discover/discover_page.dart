@@ -9,7 +9,7 @@ import 'package:moviezflutter/ui/search/movie_search_delegate.dart';
 class DiscoverPage extends StatelessWidget {
   const DiscoverPage({Key? key}) : super(key: key);
 
-  DiscoverPageController get controller => Get.find();
+  DiscoverPageController get controller => DiscoverPageController.it;
 
   @override
   Widget build(BuildContext context) {
